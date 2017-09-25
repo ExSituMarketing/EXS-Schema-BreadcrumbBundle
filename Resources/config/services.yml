@@ -1,0 +1,11 @@
+services:
+    exs_schema_breadcrumb.json_breadcrumb_generator:
+        class: 'EXS\SchemaBreadcrumbBundle\Service\JsonBreadcrumbGenerator'
+
+    exs_schema_breadcrumb.breadcrumb_extension:
+        class: 'EXS\SchemaBreadcrumbBundle\Service\Twig\BreadcrumbExtension'
+        arguments:
+            - '@exs_schema_breadcrumb.json_breadcrumb_generator'
+        public: false
+        tags:
+            - { name: 'twig.extension' }
