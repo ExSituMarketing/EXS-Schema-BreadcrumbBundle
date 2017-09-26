@@ -45,9 +45,13 @@ class BreadcrumbExtension extends \Twig_Extension
      */
     public function getJsonBreadcrumb(array $items)
     {
+        if (null === $breadcrumb = $this->generator->getBreadcrumb($items)) {
+            return '';
+        }
+
         return sprintf(
             '<script type="application/ld+json">%s</script>',
-            json_encode($this->generator->getBreadcrumb($items))
+            json_encode($breadcrumb)
         );
     }
 }

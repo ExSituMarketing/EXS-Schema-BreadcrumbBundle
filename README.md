@@ -40,9 +40,19 @@ Example :
     <head>
         ...
         {{ getJsonBreadcrumb([
-            {'url': 'http://www.test.tld/category-one', 'name': 'Category One'},
-            {'url': 'http://www.test.tld/category-one/subcategory-two', 'name': 'Subcategory Two'},
-            {'url': 'http://www.test.tld/category-one/subcategory-two/element-three', 'name': 'Element Three'}
+            {
+                'name': 'Category One',
+                'url': 'http://www.test.tld/category-one',
+                'image': 'http://www.test.tld/images/category-one.png'
+            },
+            {
+                'name': 'Subcategory Two',
+                'url': 'http://www.test.tld/category-one/subcategory-two'
+            },
+            {
+                'name': 'Element Three',
+                'url': 'http://www.test.tld/category-one/subcategory-two/element-three'
+            }
         ]) }}
     </head>
     <body>
@@ -66,7 +76,8 @@ The example above will generate the ld+json tag as :
             "position": 1,
             "item": {
                 "@id": "http://www.test.tld/category-one",
-                "name": "Category One"
+                "name": "Category One",
+                "image": "http://www.test.tld/images/category-one.png"
             }
         },
         {

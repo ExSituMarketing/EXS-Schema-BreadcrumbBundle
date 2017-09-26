@@ -11,9 +11,19 @@ class JsonBreadcrumbGeneratorTest extends \PHPUnit_Framework_TestCase
         $generator = new JsonBreadcrumbGenerator();
 
         $items = [
-            ['url' => 'http://www.test.tld/category-one', 'name' => 'Category One'],
-            ['url' => 'http://www.test.tld/category-one/subcategory-two', 'name' => 'Subcategory Two'],
-            ['url' => 'http://www.test.tld/category-one/subcategory-two/element-three', 'name' => 'Element Three'],
+            [
+                'name' => 'Category One',
+                'url' => 'http://www.test.tld/category-one',
+                'image' => 'http://www.test.tld/images/category-one.png',
+            ],
+            [
+                'name' => 'Subcategory Two',
+                'url' => 'http://www.test.tld/category-one/subcategory-two',
+            ],
+            [
+                'name' => 'Element Three',
+                'url' => 'http://www.test.tld/category-one/subcategory-two/element-three',
+            ],
         ];
 
         $expected = [
@@ -26,6 +36,7 @@ class JsonBreadcrumbGeneratorTest extends \PHPUnit_Framework_TestCase
                     'item' => [
                         '@id' => 'http://www.test.tld/category-one',
                         'name' => 'Category One',
+                        'image' => 'http://www.test.tld/images/category-one.png',
                     ]
                 ],
                 [
@@ -50,5 +61,14 @@ class JsonBreadcrumbGeneratorTest extends \PHPUnit_Framework_TestCase
         $result = $generator->getBreadcrumb($items);
 
         $this->assertEquals($expected, $result);
+    }
+
+    public function testGetBreadcrumbWithAnEmptyArray()
+    {
+        $generator = new JsonBreadcrumbGenerator();
+
+        $result = $generator->getBreadcrumb([]);
+
+        $this->assertNull($result);
     }
 }

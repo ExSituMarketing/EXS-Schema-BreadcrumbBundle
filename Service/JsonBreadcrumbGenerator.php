@@ -45,7 +45,7 @@ class JsonBreadcrumbGenerator
      *
      * @param array $items
      *
-     * @return array
+     * @return array|null
      */
     public function getBreadcrumb(array $items)
     {
@@ -62,10 +62,14 @@ class JsonBreadcrumbGenerator
                 $breadcrumbItem['item']['@id'] = (string)$item['url'];
                 $breadcrumbItem['item']['name'] = (string)$item['name'];
 
+                if (isset($item['image'])) {
+                    $breadcrumbItem['item']['image'] = (string)$item['image'];
+                }
+
                 $breadcrumb['itemListElement'][] = $breadcrumbItem;
             }
         }
 
-        return $breadcrumb;
+        return empty($breadcrumb['itemListElement']) ? null : $breadcrumb;
     }
 }

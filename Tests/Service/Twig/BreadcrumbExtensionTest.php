@@ -69,4 +69,16 @@ class BreadcrumbExtensionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $result);
     }
+
+    public function testGetJsonBreadcrumbWithEmptyArray()
+    {
+        $generator = $this->prophesize(JsonBreadcrumbGenerator::class);
+        $generator->getBreadcrumb([])->willReturn(null)->shouldBeCalledTimes(1);
+
+        $extension = new BreadcrumbExtension($generator->reveal());
+
+        $result = $extension->getJsonBreadcrumb([]);
+
+        $this->assertEquals('', $result);
+    }
 }
