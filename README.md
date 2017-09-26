@@ -1,5 +1,7 @@
 # EXS-Schema-BreadcrumbBundle
 
+[![Build Status](https://travis-ci.org/ExSituMarketing/EXS-Schema-BreadcrumbBundle.svg?branch=master)](https://travis-ci.org/ExSituMarketing/EXS-Schema-BreadcrumbBundle)
+
 ## What is this bundle doing ?
 
 This bundle generates the `<script>` tag containing the json object required to define the `BreadcrumbList` object as defined by schema.org
