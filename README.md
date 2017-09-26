@@ -8,13 +8,13 @@ Source: http://schema.org/BreadcrumbList
 
 ## Installation
 
-Require the bundle in your project
+Add the bundle with composer :
 
 ```
 $ composer require exs/schema-breadcrumb-bundle
 ```
 
-Enable the bundle
+Enable the bundle in the kernel :
 
 ```php
 <?php
@@ -33,6 +33,7 @@ public function registerBundles()
 ## Usage
 
 Example :
+
 ```twig
 <!DOCTYPE html>
 <html>
@@ -49,3 +50,48 @@ Example :
     </body>
 </html>
 ```
+
+The order of the elements in the array is used to define the order of elements in the breadcrumb.
+
+The example above will generate the ld+json tag as :
+
+```html
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+                "@id": "http://www.test.tld/category-one",
+                "name": "Category One"
+            }
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+                "@id": "http://www.test.tld/category-one/subcategory-two",
+                "name": "Subcategory Two"
+            }
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+                "@id": "http://www.test.tld/category-one/subcategory-two/element-three",
+                "name": "Element Three"
+            }
+        }
+    ]
+}
+</script>
+```
+
+And will be interpreted by search engines as a breadcrumb like :
+
+```text
+Category One > Subcategory Two > Element Three
+``` 
