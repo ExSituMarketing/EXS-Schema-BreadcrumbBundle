@@ -54,4 +54,10 @@ class BreadcrumbExtension extends \Twig_Extension
             json_encode($breadcrumb)
         );
     }
+
+    public function getName()
+    {
+        // TODO: Implement getName() method.
+        return 'BreadcrumbExtension';
+    }
 }
